@@ -1,0 +1,25 @@
+# Dependencies / build output
+node_modules/
+__pycache__/
+*.pyc
+dist/
+build/
+
+# Secrets (never commit)
+.env
+.env.*
+*.pem
+*.key
+
+# Demo videos are intentionally excluded from this repo to keep it light
+# (the stickman skill's small baseline .mp4 files it needs for style
+# verification are force-included via the negations below).
+*.mp4
+!stickman-video-director/skills/directing-stickman-videos/assets/**/*.mp4
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
