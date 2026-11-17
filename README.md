@@ -8,6 +8,8 @@ A collection of skills for making videos with an AI agent — short videos (Shor
 
 > **Update 15 Nov 2026:** +20 skills — 17 pointer skill animasi dari daftar Feljoy_ix (motion-canvas, motion, ola, anime-js, manim, shifty, two-js, lottie-web, tweenjs, lume, gifenc, konva, blender, three-js, godot, babylon-js, proton-particles) + `karaoke_sync_verification`, `build-67js-scene`, `render-67js-media` (original Billsmoke). Total kini 32 skill.
 
+> **Update 17 Nov 2026:** +1 skill — `ffmpeg-skill` (editor video FFmpeg lokal: probe, cut, captions/karaoke, loudness, delivery checks) dari [kajisho5/ffmpeg-skill](https://github.com/kajisho5/ffmpeg-skill). Total kini 33 skill.
+
 | Skill | Untuk apa / What it does | Author / Source | License |
 |---|---|---|---|
 | `video-studio` | Skill induk video pendek 9:16 (Shorts/Reels/TikTok): Blender, AI video, Remotion, FFmpeg, TTS | Billsmoke (original) | MIT |
@@ -19,6 +21,7 @@ A collection of skills for making videos with an AI agent — short videos (Shor
 | `painted-animation` | Animasi kartun cat air & tinta (p5.js + p5.brush) | Adapted from [John Heibel/PDoomVideo](https://github.com/JohnHeibel/PDoomVideo) & [ClaudeAnimationBase](https://github.com/JohnHeibel/ClaudeAnimationBase) (MIT) | MIT |
 | `blender-claymation` | Video claymation / stop-motion di Blender | [angrypenguinpng/blender-claymation-skill](https://github.com/angrypenguinpng/blender-claymation-skill) | MIT |
 | `shorts_upload_pack` | Paket upload per Short: judul, deskripsi, pin comment, checklist manual | Billsmoke (original) | MIT |
+| `ffmpeg-skill` | Editor video FFmpeg lokal: 42 tools (probe, cut, fit, captions/karaoke, loudness, silence, delivery checks), workflow probe → edit → check → verify | [kajisho5/ffmpeg-skill](https://github.com/kajisho5/ffmpeg-skill) | MIT |
 | `image` | Generate/edit gambar: cover, thumbnail, mockup, aset visual | [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) | MIT |
 | `earshot` | Menilai/memilih/motong/memverifikasi suara: SFX, musik, ambience (CLI + MCP, CPU) | [Leonxlnx/earshot](https://github.com/Leonxlnx/earshot) | MIT |
 | `gemini-api-dev` | Coding dengan Gemini API — termasuk speech generation (TTS), voice design & replication, transkripsi, dan video generation | Billsmoke (original) | MIT |
