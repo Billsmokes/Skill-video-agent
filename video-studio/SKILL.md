@@ -1,6 +1,6 @@
 ---
 name: video-studio
-description: Skill induk untuk membuat video pendek (Shorts/Reels/TikTok, 9:16) memakai tool apa pun yang tersedia: Blender (3D), model AI video lewat konektor (mis. fal.ai, Veo, Runway, Kling), animasi berbasis kode (Remotion, HTML/Canvas, MoviePy, Manim), FFmpeg, TTS, Whisper, dan generator gambar. Gunakan skill ini SETIAP KALI pengguna meminta video, animasi, klip, reel, iklan pendek, konten Shorts, voice-over, atau subtitle, meskipun tidak menyebut tool tertentu. Skill ini memeriksa tool yang tersedia, memilih jalur terbaik, merencanakan, membuat, memeriksa kualitas sendiri, dan melarang hasil bergaya low-poly atau kasar.
+description: "Skill induk untuk membuat video pendek (Shorts/Reels/TikTok, 9:16) memakai tool apa pun yang tersedia: Blender (3D), model AI video lewat konektor (mis. fal.ai, Veo, Runway, Kling), animasi berbasis kode (Remotion, HTML/Canvas, MoviePy, Manim), FFmpeg, TTS, Whisper, dan generator gambar. Gunakan skill ini SETIAP KALI pengguna meminta video, animasi, klip, reel, iklan pendek, konten Shorts, voice-over, atau subtitle, meskipun tidak menyebut tool tertentu. Skill ini memeriksa tool yang tersedia, memilih jalur terbaik, merencanakan, membuat, memeriksa kualitas sendiri, dan melarang hasil bergaya low-poly atau kasar."
 ---
 
 # Video Studio
@@ -18,6 +18,30 @@ Alur: **cek tool -> pilih jalur -> rencana -> buat -> rakit -> QA -> serahkan.**
    Jangan menampilkan atau menyimpan API key di output.
 5. Hormati hak cipta dan orang nyata: tidak memakai musik/gambar berhak cipta tanpa izin,
    tidak membuat video menyesatkan yang meniru wajah atau suara orang nyata.
+
+## Karakter hirup (stickman/kartun 2D — wajib untuk video karakter)
+Aturan ini dari repo `mromidev/claude-animated-shorts` (MIT, dicek 16 Nov 2026; laporan ukur
+disimpan di `~/workspace/imagine_media/references/claude-animated-shorts/`). Karakter 2D
+terasa hidup bukan karena dunia 3D, tapi karena sistem gerak yang diukur angkanya:
+- **Jalan on-ones**: karakter yang bergerak berubah tiap frame (tanpa pose ditahan 2-3 frame).
+  Langkah 9-12 frame; badan naik-turun (bob) 3-7% dari tinggi, terendah pas kaki menapak;
+  condong (lean) 1-7° ke depan seirama bob; paha ayun ±35-45°; **kaki yang menapak TIDAK
+  menggeser** (planted) + bayangan kontak lembut di bawah kaki.
+- **Kedip tiap 0,5-1,5 detik** (3-4 frame); kedip menutupi momen ganti ekspresi.
+- **Reaksi 0-3 frame SEBELUM kata** diucapkan; ganti ekspresi instan (1 frame).
+- **Antisipasi + impact**: lompat = jongkok dulu 2-3 frame; pukulan/tujahan = tahan ~6 frame
+  lalu dorong 1 frame; dampak (flash/ring) tepat di kata yang bersangkutan.
+- **Idle = diam itu benar**: karakter yang menunggu cukup beku (jangan goyang-goyang tanpa
+  alasan); hanya idle yang termotivasi (mis. kepala terkulai pelan 10-15°).
+- **Kamera tidak pernah diam**: tiap hold merayap (push-in pelan 0,15-0,35%/frame); gerak
+  glide smootherstep 18-40 frame; potongan hanya untuk lompatan besar; roll 4-5°; prop
+  foreground di ~1/3 shot; DOF fokus ke mata di close-up.
+- **Muka**: sistem ekspresi (kami punya 9 varian di TukangBase — kembangkan ke arah 14);
+  konstruksi kepala "bean": taper + asimetris + miring, bukan bulet simetris; outline
+  tebal-tipis (lebih tebal di sisi bayangan/bawah); muka harus terang (luma ≥0,85).
+- **Yang DITOLAK dari repo itu**: dunia 3D three.js (render berat, ~4 fps di 2K), aturan
+  "no captions" dan "English only" (kami: karaoke penuh + Bahasa Indonesia + CTA subscribe).
+  Frame referensi repo hanya untuk studi gaya — jangan contoh karakter/cerita/shot-nya.
 
 ## Langkah 0: Cek kemampuan (lakukan sekali di awal)
 Uji, jangan menebak. Catat hasilnya sebagai "inventaris tool".
@@ -195,6 +219,9 @@ Ekstrak minimal 3 frame (awal, tengah, akhir) plus 1 frame di setiap pergantian 
 - [ ] Gaya, palet, dan font konsisten antar scene
 - [ ] Teks terbaca, tidak terpotong, di dalam safe zone
 - [ ] Gerakan halus; tidak ada loncatan/objek menembus
+- [ ] **Karakter hirup**: tidak ada frame beku ≥12 frame berturut-turut pada karakter yang
+  seharusnya bergerak (cek selisih piksel antar frame); kedip terlihat; kaki menapak tidak
+  menggeser; kamera merayap di setiap hold (bukan diam total)
 - [ ] Audio sinkron, tidak clipping, volume musik tidak menutupi narasi
 - [ ] Spesifikasi benar (ffprobe): 1080x1920, 30 fps, durasi sesuai, audio ada bila seharusnya
 Perbaiki PENYEBAB (skrip/prompt), render ulang bagian bermasalah saja, cek lagi.

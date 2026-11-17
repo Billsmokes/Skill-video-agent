@@ -1,3 +1,8 @@
+---
+name: karaoke-sync-verification
+description: "Verify karaoke subtitle sync in a rendered video: re-transcribe the rendered audio with Whisper, compare the word timings against the karaoke track, and confirm sync with cross-correlation of the clean voice-over against the rendered audio. Use after rendering any video with karaoke captions, before delivering it."
+---
+
 # Karaoke Sync Verification
 
 ## Re-transcribe the rendered audio
@@ -25,6 +30,20 @@
 - Re-render the affected video and run the diff again from the new rendered audio.
 
 - Inspect the alignment step that produced the drift when a rebuild still disagrees with the ground truth, and do not patch single words by hand to hide a shifted block.
+
+## Cross-check long music-bedded audio with cross-correlation
+
+- Use cross-correlation as the authoritative sync check for long-form audio that has a music bed.
+
+- Keep the Whisper diff as the check for Shorts and for clean voice audio without a music bed.
+
+- On LF5 the Whisper checker gave contradictory fail results on the same timeline while cross-correlation of the clean voice files against the rendered audio gave zero offset on all six scenes.
+
+- When cross-correlation shows no offset and the Whisper diff still flags drift, trust cross-correlation and do not rebuild or re-render on the Whisper result alone.
+
+- Re-run the Whisper check on a fresh transcription before treating its flag as real and record which check decided the verdict.
+
+- Keep the one second drift limit for both checks and do not deliver while cross-correlation shows drift over one second.
 
 ## Available connectors
 
