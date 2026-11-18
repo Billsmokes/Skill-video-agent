@@ -7,16 +7,15 @@ skill_improvement:
   managed: true
   status: active
   evidence_handles:
-  - assistant-msg-c7480dde
-  - assistant-msg-167ad667
-  - assistant-msg-b616b4f1
+  - MEMORY.md 15 Nov LF5 xcorr authoritative
   - MEMORY.md 15 Nov 15:41 LF4 karaoke bug
+  - assistant-msg-c7480dde
   measurement:
     proxy_metric_id: objective_success_rate
-    success_criterion: In sampled post-install karaoke deliveries, the rendered-audio re-transcription diff runs before delivery in at least 80 percent of cases and no delivered video is reported with text running ahead of voice by more than 1 second in a segment.
+    success_criterion: In sampled post-install long-form deliveries with a music bed, the cross-correlation check runs before delivery in at least 80 percent of cases and no video is rebuilt or re-rendered solely on a Whisper diff that cross-correlation contradicts.
     window_days: 30
   needs_review: false
-  rationale: Long-form 4 shipped with karaoke text up to 24 seconds ahead of voice in segment 3 (224 to 337 seconds), for example text shown at 302 seconds and spoken at 326 seconds, while the raw Whisper timings were correct and the alignment step had misplaced a 35 second block. Frame QA on a few frames missed the drift, the user reported the text racing the voice on 15 Nov, and the fix requires rebuilding the karaoke file, re-rendering, re-uploading, and re-scheduling. Full karaoke is now the standing style from Ep 18 onward (assistant-msg-b616b4f1), so the same failure can repeat on every episode and long-form. Video-studio QA checks audio sync only in general terms and remotion-captions covers transcription and display, not a rendered-audio ground truth diff, so this narrow verification step fills the gap without replacing frame QA.
-  review_after: 2026-12-15T08:44:28.180120+00:00
-  reviewed_at: 2026-11-15T08:44:28.180120+00:00
-  run_id: sirun_60ea40046fdd4a0a9846eb908e760040
+  rationale: The managed karaoke_sync_verification skill treats a Whisper re-transcription of the rendered audio as ground truth. On LF5 that checker gave contradictory fail results on the same long music-bedded timeline, while cross-correlation of the clean voice files against the rendered audio gave zero offset on all six scenes and was recorded as the authoritative check. Without this distinction the next long-form risks a needless rebuild and re-render on a Whisper false positive, or a real drift missed while chasing one. This update adds cross-correlation as the authoritative check for long music-bedded audio and keeps the Whisper diff for Shorts and clean voice audio.
+  review_after: 2026-12-16T05:26:50.810812+00:00
+  reviewed_at: 2026-11-16T05:26:50.810812+00:00
+  run_id: sirun_d6a7dc3fcbed419d810791f1187dd4e7

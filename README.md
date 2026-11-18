@@ -10,6 +10,8 @@ A collection of skills for making videos with an AI agent — short videos (Shor
 
 > **Update 17 Nov 2026:** +1 skill — `ffmpeg-skill` (editor video FFmpeg lokal: probe, cut, captions/karaoke, loudness, delivery checks) dari [kajisho5/ffmpeg-skill](https://github.com/kajisho5/ffmpeg-skill). Total kini 33 skill.
 
+> **Update 18 Nov 2026:** 4 skill diperbarui ke versi terbaru — `video-studio` (+aturan adegan 18 Nov: tanah, langit, properti, framing, close-up, ulah ngarubah nu ges alus), `ffmpeg-skill` (versi adaptasi VM: hasil doctor 86 kapabilitas, faster-whisper di payeng-venv), `karaoke_sync_verification` (xcorr jadi cek otoritatif untuk audio panjang), `motion-design` (versi adaptasi video: 12 prinsip Disney + timing/easing dipetakan ke Remotion/Blender/HyperFrames; file upstream verbatim pindah ke `references/upstream/`). Total tetap 33 skill.
+
 | Skill | Untuk apa / What it does | Author / Source | License |
 |---|---|---|---|
 | `video-studio` | Skill induk video pendek 9:16 (Shorts/Reels/TikTok): Blender, AI video, Remotion, FFmpeg, TTS | Billsmoke (original) | MIT |
@@ -17,7 +19,7 @@ A collection of skills for making videos with an AI agent — short videos (Shor
 | `video-shotcraft` | Video produk sinematik dari halaman web (Remotion, template Ink Press, shot cards) | [Vincentwei1021/video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft) | Apache 2.0 |
 | `stickman-video-director` | Video stickman 11 gaya (storytelling, explainer, dll.) | [kaomei/stickman-video-director](https://github.com/kaomei/stickman-video-director) | MIT |
 | `kinetic-reel` | Reel kinetic typography (teks bergerak, motion graphics) | Derived from [John Heibel/ClaudeAnimationBase](https://github.com/JohnHeibel/ClaudeAnimationBase) (MIT) | MIT |
-| `motion-design` | Prinsip motion design: timing, easing, koreografi, animasi UI | LottieFiles | MIT |
+| `motion-design` | Prinsip motion design untuk video: 12 prinsip Disney, timing, easing, koreografi — dipetakan ke Remotion, Blender & HyperFrames | LottieFiles | MIT |
 | `painted-animation` | Animasi kartun cat air & tinta (p5.js + p5.brush) | Adapted from [John Heibel/PDoomVideo](https://github.com/JohnHeibel/PDoomVideo) & [ClaudeAnimationBase](https://github.com/JohnHeibel/ClaudeAnimationBase) (MIT) | MIT |
 | `blender-claymation` | Video claymation / stop-motion di Blender | [angrypenguinpng/blender-claymation-skill](https://github.com/angrypenguinpng/blender-claymation-skill) | MIT |
 | `shorts_upload_pack` | Paket upload per Short: judul, deskripsi, pin comment, checklist manual | Billsmoke (original) | MIT |

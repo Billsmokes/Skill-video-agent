@@ -36,6 +36,33 @@ terasa hidup bukan karena dunia 3D, tapi karena sistem gerak yang diukur angkany
 - **Kamera tidak pernah diam**: tiap hold merayap (push-in pelan 0,15-0,35%/frame); gerak
   glide smootherstep 18-40 frame; potongan hanya untuk lompatan besar; roll 4-5°; prop
   foreground di ~1/3 shot; DOF fokus ke mata di close-up.
+- **TANAH (aturan user 18 Nov 2026, berlaku untuk Shorts + Reels)**: di scene ngobrol/berdiri,
+  garis tanah/horizon harus TETAP DATAR dan DIAM — kamera creep hanya push-in (scale) atau
+  glide lateral yang menjaga horizon level; DILARANG roll atau bob vertikal yang membuat
+  tanah terlihat miring seperti tanjakan/turunan. Permukaan tanah BERVARIASI tiap scene
+  sesuai tempatnya — batu bata, aspal, rumput, tanah — jangan tanah (dirt) melulu.
+- **LANGIT (aturan user 18 Nov 2026, berlaku untuk Shorts + Reels)**: langit harus SESUAI
+  waktu di scenenya — siang/sore/malam (warna, matahari/bulan, cahaya) — termasuk ada
+  tidaknya burung di langit; jangan langit siang generik di scene malam, atau sebaliknya.
+- **PROPERTI/DETAIL (aturan user 18 Nov 2026, berlaku untuk Shorts + Reels)**: tiap scene
+  kudu aya komponen detail nu SESUAI UKURAN jeung karakterna — lampu jalan, korsi, meja,
+  pager, tangkal, jsb. — supaya karasa dunya kartun beneran, lain latar kosong; skala
+  properti kudu konsisten jeung tinggi karakter di scene nu sarua. Mun hiji properti teu
+  bisa dijieun, paké nu PALING MIRIP (closest similar) — ulah ngosongkeun scenena.
+- **FRAMING/SHOT (aturan user 18 Nov 2026, berlaku untuk Shorts + Reels)**: shot ulah
+  deukeut teuing — jaga jarak framing nu pas supaya karakter jeung scenena kabaca jelas
+  (medium/wide saluyu jeung kebutuhan scene, lain close-up nu motong konteks).
+- **CLOSE-UP (aturan user 18 Nov 2026, berlaku untuk Shorts + Reels)**: close-up HANYA di
+  momen berdampak — reaksi lucu, momen "sadar", ketegangan, detail penting, keputusan/ide,
+  emosi cerita, hook pembuka — 1-2 detik tiap close-up, MAKS 1-3 close-up per video 30-45
+  detik. Pola: wide → close-up → wide. Kepala 45-60% lebar frame, mata di sepertiga atas,
+  latar polos/blur, SATU elemen pendukung (? / keringat / air mata / garis kejut). JANGAN
+  close-up saat penonton perlu tahu lokasi/langkah (tutorial), saat banyak karakter
+  berinteraksi, atau berturut-turut lebih dari 2x.
+- **ULAH NGARUBAH NU GES ALUS (aturan user 18 Nov 2026, berlaku untuk semua kerja)**:
+  saat memperbaiki/meningkatkan, ubah HANYA bagian yang cacat — yang sudah bagus jangan
+  diutak-atik; jangan merusak yang sudah jalan demi perbaikan di tempat lain. KECUALI
+  perubahannya jelas upgrade yang bikin makin alus — itu boleh.
 - **Muka**: sistem ekspresi (kami punya 9 varian di TukangBase — kembangkan ke arah 14);
   konstruksi kepala "bean": taper + asimetris + miring, bukan bulet simetris; outline
   tebal-tipis (lebih tebal di sisi bayangan/bawah); muka harus terang (luma ≥0,85).

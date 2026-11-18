@@ -1,315 +1,167 @@
 ---
 name: motion-design
-description: >
-  Applies motion design principles to create emotionally-driven, technically sound animations and transitions.
-  Provides timing, easing, choreography, and Disney animation principles adapted for UI.
-  Use when creating animations, transitions, micro-interactions, loading states, page transitions,
-  scroll-triggered effects, or any motion work. Works with CSS, Framer Motion, GSAP, Lottie, Spring,
-  or any animation system.
+description: Motion design principles for video animation - Disney 12 principles, timing and easing tables, choreography and quality checks, mapped to Remotion springs, Blender keyframe easing and HyperFrames beats for the vertical stickman series.
 license: MIT
-metadata:
-  author: LottieFiles
-  version: "1.0.0"
 ---
 
-# Motion Design Skill
+# Motion Design — timing, easing and choreography for video
 
-## When to Apply
+> **Installed 2026-11-17 (audit: CLEAN) — LottieFiles/motion-design-skill, commit `f9a8a041b85185ee4881b3471d3415e939aac772`, MIT, 3,248 stars.**
+> Pure text skill (17 Markdown files, 92 KB, 1,628 lines). No code, no npm packages, no install scripts, no network calls, no credential reads — grep of the whole tree for `fetch`, `eval`, `exec`, `curl`, `token`, `password`, `http` returns nothing except the repo's own links. Nothing to pin, no integrity hashes apply.
+> Upstream files copied verbatim to `references/upstream/` (SHA-256 of upstream `SKILL.md` `8729ecbc7e5736c1295baaa8ba0384bb4b1aac9cf91b83fcdc64d9548a57bb19`). This file is the adaptation to our stack; the upstream text is the depth reference.
+> **Note:** a verbatim copy of this skill already sat in this folder since 9 Nov 2026 with no header and no stack mapping. Reorganised 17 Nov to house style (adapted `SKILL.md` on top, verbatim upstream under `references/upstream/`).
+> **Repo:** https://github.com/LottieFiles/motion-design-skill
 
-Use this skill when:
-- Creating UI animations (buttons, cards, modals, page transitions)
-- Designing micro-interactions and feedback animations
-- Building loading, success, or error states
-- Animating illustrations or decorative elements
-- Planning scroll-triggered or progress-based animations
-- Establishing brand motion identity
-- Choreographing multi-element sequences
+## Why this exists here
 
-**Decision tree:**
-1. Does it serve a functional purpose (feedback, guidance)? → Timing rules for responsiveness
-2. Does it express brand personality? → Motion Personality archetypes
-3. Does it tell a story or guide attention? → Disney principles + choreography
-4. Is this a complex multi-element scene? → 1/3 Rule + stagger patterns
+Our stickman workflow already has measured character rules from claude-animated-shorts (walk on-ones, blink every 0.5–1.5 s, react 0–3 f before the word, anticipation 2–3 f + impact 1 f, camera creeping every hold). Those rules cover **character acting**. This skill covers everything around the character: **how long a move takes, what easing it uses, how elements enter and leave, how a multi-element beat is staged**. Use it when a scene feels flat, floaty, jerky or samey even though the characters are drawn right.
 
----
+## When to use it
 
-## Quick Reference: 8-Step Checklist
+- A text entrance, title card, karaoke word pop or transition feels wrong and you cannot say why — check the duration and easing tables first.
+- Choreographing a multi-element beat (character enters + text pops + camera pushes in + object reacts) — use the 8-step checklist and the stagger rules.
+- Choosing a Remotion spring or a Blender easing for a move instead of guessing.
+- Reviewing a finished scene against the quality checklist (`references/upstream/reference/quality-checklist.md`).
 
-Before creating any animation:
+## When NOT to use it
 
-1. **Emotional target?** — joy, calm, urgency, elegance
-2. **Motion Personality?** — Playful, Premium, Corporate, Energetic
-3. **Primary property?** — position, scale, rotation, opacity
-4. **Duration?** — see duration table below
-5. **Easing family?** — entrance=decelerate, exit=accelerate
-6. **Hero element?** — apply staging principles
-7. **Secondary + ambient layers?** — add richness
-8. **1/3 rules?** — motion distance, simultaneous elements
+- Character acting itself (walk, blink, gesture timing) — the claude-animated-shorts measured rules in the video-studio skill win there. Where the two disagree, the measured rules win for characters: upstream anticipation is 100–200 ms (3–6 f) but stickman anticipation is 2–3 f; upstream squash impact is 2–4 f, which does match.
+- UI work (buttons, modals, loading spinners) — the upstream examples are UI. Translate them, do not copy them: a modal entrance is a scene entrance, a button press is a character poke, a loading state is a waiting beat.
 
----
+## The 8-step checklist (video version)
 
-## Three Pillars (CRITICAL)
+Before animating any beat, answer all eight:
 
-Every animation must satisfy three pillars before any technical decisions:
+1. **Emotional target?** — joy, calm, urgency, elegance. Drives easing, timing, amplitude.
+2. **Motion personality?** — one archetype per episode, applied consistently (see below).
+3. **Primary property?** — position, scale, rotation, opacity. One property = direct, two = polished, three or more = overwhelming.
+4. **Duration?** — from the frame table below.
+5. **Easing family?** — entrance decelerates, exit accelerates, on-screen smooths both ends.
+6. **Hero element?** — one thing moves per beat; everything else is secondary or still.
+7. **Secondary + ambient layers?** — shadow, hair, cloth, background drift. Flat animation = missing layers.
+8. **1/3 rules?** — motion distance and simultaneous elements stay inside budget (stagger total under 500 ms / 15 f).
 
-| Pillar | Question | Drives |
-|--------|----------|--------|
-| **Emotional Intent** | What should the viewer FEEL? | Easing, timing, amplitude |
-| **Visual Narrative** | What's the micro-story? | Setup → Action → Resolution |
-| **Motion Craft** | How do we make it believable? | Physics, secondary motion, paths |
+## Duration table — UI milliseconds translated to frames at 30 fps
 
-**Three motion layers** (flat animation = missing layers):
-- **Primary**: Main action the viewer follows
-- **Secondary**: Supporting richness (shadows, icons shifting)
-- **Ambient**: Background life (gradients, subtle pulses)
+Upstream durations are for UI micro-interactions. A video beat runs longer: treat the table as **ratios**, then scale to the beat. 1 f = 33 ms.
 
-> Deep dive: [director/core-philosophy.md](director/core-philosophy.md)
+| Upstream element | ms | Frames at 30 fps | Video equivalent |
+|---|---|---|---|
+| Micro-feedback | 80–120 | 2–4 f | Karaoke word pop, blink settle |
+| Button / toggle | 120–180 | 4–5 f | A poke, a tap, a small reaction |
+| Icon transition | 150–250 | 5–8 f | Expression change, prop swap |
+| Card enter / exit | 200–350 | 6–11 f | Character or text entrance |
+| Modal / dialog | 300–400 | 9–12 f | Scene entrance, panel slide |
+| Page transition | 400–600 | 12–18 f | Scene change, camera move |
+| Dramatic reveal | 600–1200 | 18–36 f | Reveal, punchline beat, hero shot |
+| Ambient | 2000–20000 | 60–600 f | Idle sway, background life, breathing |
 
----
+**Distance scales duration:** 100 px = base, 200 px = 1.3x, 400 px = 1.6x. A character crossing the frame takes longer than one stepping forward.
+**Enter longer than exit:** entrances run 30–50% longer than exits. What appears matters more than what leaves.
+**Stagger budget:** micro cascade 20–40 ms (1 f), standard 50–100 ms (2–3 f), dramatic 100–200 ms (3–6 f). Total stagger must stay under 500 ms (15 f). Direction: top-to-bottom for lists, left-to-right for horizontal, centre-out for a hero, reverse for exits.
 
-## Motion Personality
+## Easing — the directional rules (never break these)
 
-Select ONE archetype per project. Apply consistently.
+- **Entrance** = decelerate (fast start, gentle landing): ease-out family.
+- **Exit** = accelerate (gentle start, fast departure): ease-in family.
+- **On-screen travel** = smooth both ends: ease-in-out family.
+- **Looping ambient** = sine ease-in-out, seamless.
+- **NEVER linear for spatial movement.** Linear is only for rotation, progress bars and timers.
 
-| Archetype | Duration | Easing | Overshoot | Keywords |
-|-----------|----------|--------|-----------|----------|
-| **Playful** | 150-300ms | ease-out-back | 10-20% | fun, whimsical, bouncy, cute |
-| **Premium** | 350-600ms | cubic-bezier(0.4,0,0.2,1) | 0% | elegant, minimal, luxury, sophisticated |
-| **Corporate** | 200-400ms | cubic-bezier(0.2,0,0,1) | 0-3% | clean, professional, business, dashboard |
-| **Energetic** | 100-250ms | ease-out-expo | 15-30% | dynamic, energetic, bold, exciting |
+### Industry curves (cubic-bezier values transfer directly to Remotion)
 
-**Default**: Corporate for UI, Playful for illustrations.
-
-**Brand Motion Identity** — define three constants:
-1. **Signature easing**: One curve for 80% of animations
-2. **Duration palette**: 3 durations (quick / standard / slow)
-3. **Entrance pattern**: One consistent entry style
-
-> Deep dive: [director/motion-personality.md](director/motion-personality.md)
-
----
-
-## Property Selection
-
-| Effect Goal | Primary Property | Secondary Properties |
-|-------------|------------------|---------------------|
-| Entrance/Exit | position | opacity, scale |
-| Emphasis/Attention | scale | rotation (subtle), opacity pulse |
-| State Change | opacity, color | scale (press feedback) |
-| Direction/Flow | position | rotation (follow path) |
-| Depth/3D Feel | scale + shadow | position (parallax) |
-| Loading/Progress | rotation (spinner) | scale, opacity pulse |
-| Success | scale (pop) | color, rotation (checkmark draw) |
-| Error/Alert | position (shake) | color, rotation (wobble) |
-
-**Simplicity threshold**: Use the minimum properties needed. One = direct. Two = polished. Three+ = potentially overwhelming.
-
-> Deep dive: [reference/property-selection.md](reference/property-selection.md)
-
----
-
-## Duration Table
-
-| Element Type | Duration | Rationale |
-|-------------|----------|-----------|
-| Tooltip / micro-feedback | 80-120ms | Must feel instant |
-| Button press / toggle | 120-180ms | Responsive feedback |
-| Icon transition | 150-250ms | Clear state change |
-| Card enter / exit | 200-350ms | Spatial awareness |
-| Modal / dialog | 300-400ms | Focus shift |
-| Page transition | 400-600ms | Context switch |
-| Dramatic reveal | 600-1200ms | Theatrical build |
-
-**Distance scales duration**: 100px = base. 200px = 1.3x. 400px = 1.6x.
-
-**Enter > Exit**: Entrances 30-50% longer than exits. Users care about what appears.
-
-**Interactive feedback**:
-- Hover: <100ms
-- Press: <150ms
-- Release/settle: 200-300ms
-- Error shake: 300-400ms (2-3 oscillations)
-
-> Deep dive: [reference/timing-easing-tables.md](reference/timing-easing-tables.md)
-
----
-
-## Easing Selection
-
-**Directional rules**:
-- **Entrance** → decelerate (fast start, gentle landing): ease-out family
-- **Exit** → accelerate (gentle start, fast departure): ease-in family
-- **On-screen** → smooth both ends: ease-in-out family
-- **Looping ambient** → seamless: sine-based ease-in-out
-
-**Industry standards**:
-
-| Standard | Cubic Bezier | Use For |
-|----------|-------------|---------|
-| Material Design 3 | (0.2, 0, 0, 1) | Default on-screen |
+| Curve | Bezier | Use |
+|---|---|---|
+| Material Design 3 standard | (0.2, 0, 0, 1) | Default on-screen move |
 | MD3 Emphasized | (0.05, 0.7, 0.1, 1) | Entrances, attention |
 | MD3 Accelerate | (0.3, 0, 1, 1) | Exits, dismissals |
-| Apple HIG | (0.25, 0.1, 0.25, 1) | Standard iOS |
-| Snappy UI | (0.2, 0, 0, 1) | Fast, decisive |
+| Apple HIG | (0.25, 0.1, 0.25, 1) | Standard, neutral |
+| Snappy | (0.2, 0, 0, 1) | Fast, decisive |
 | Gentle float | (0.4, 0, 0.2, 1) | Ambient, background |
-| Bounce settle | (0.175, 0.885, 0.32, 1.275) | Overshoot, playful |
+| Bounce settle | (0.175, 0.885, 0.32, 1.275) | Playful overshoot |
+| Elastic snap | (0.68, -0.55, 0.265, 1.55) | Dramatic overshoot |
 
-**Material-based easing**:
+### Remotion mapping
 
-| Material | Duration Scale | Overshoot |
-|----------|---------------|-----------|
-| Rigid (metal, stone) | 1.2x | 0% |
-| Elastic (rubber, gel) | 0.8x | 15-25% |
-| Fluid (water, paint) | 1.5x | 5% |
-| Paper (cards, sheets) | 1.0x | 3-5% |
-| Gas (smoke, fog) | 2.0x | 0% |
-| Glass (brittle) | 0.9x | 0% |
+- `interpolate()` with `easing: Easing.bezier(0.2, 0, 0, 1)` for the MD3 standard curve; swap in any row above.
+- `spring()` configs from the upstream spring table (mass 1): standard `{ stiffness: 300, damping: 20 }`, bouncy `{ stiffness: 200, damping: 12 }`, very bouncy `{ stiffness: 150, damping: 8 }`, gentle `{ stiffness: 120, damping: 22 }`, very stiff `{ stiffness: 400, damping: 28 }`.
+- Overshoot budget: success 5–10%, feedback 2–5%, celebration 15–25%, error 0%, premium 0%.
 
-> Deep dive: [reference/timing-easing-tables.md](reference/timing-easing-tables.md)
+### Blender mapping
 
----
+- Graph editor, interpolation BEZIER with easing **EASE_OUT** for entrances, **EASE_IN** for exits, **EASE_IN_OUT** for on-screen travel.
+- Overshoot: interpolation mode **BACK** (small overshoot), **BOUNCE** or **ELASTIC** (playful/dramatic). Keep overshoot inside the budget above.
+- Material feel: rigid (metal, stone) 1.2x duration, 0% overshoot; elastic (rubber) 0.8x, 15–25% overshoot; fluid (water) 1.5x, 5%; paper 1.0x, 3–5%; gas/smoke 2.0x, 0%.
 
-## Common Patterns
+## Motion personality — pick ONE per episode
 
-### Button Press (Playful)
-1. **Anticipation**: Scale to 0.97 (50ms, ease-out)
-2. **Squash**: Scale to [1.04, 0.96] (100ms, ease-in)
-3. **Follow through**: Overshoots to 1.02, settles to 1.0 (spring, 200ms)
-4. **Secondary**: Shadow shrinks during press, icon shifts down 2px
-5. **Total**: ~150ms press + 200ms settle
+| Archetype | Duration | Easing | Overshoot | Fits |
+|---|---|---|---|---|
+| Playful | 150–300 ms | ease-out-back | 10–20% | Stickman comedy, Desa Seblak default |
+| Premium | 350–600 ms | cubic-bezier(0.4, 0, 0.2, 1) | 0% | Milestone / Retro TV openings |
+| Corporate | 200–400 ms | cubic-bezier(0.2, 0, 0, 1) | 0–3% | Explainer / tutorial long-form |
+| Energetic | 100–250 ms | ease-out-expo | 15–30% | Punchline beats, celebrations |
 
-### Card Entrance (Premium)
-1. **Start**: 20px below target, opacity 0
-2. **Path**: Slight curve (10px X offset at midpoint)
-3. **Easing**: ease-out-cubic deceleration
-4. **Follow through**: Shadow arrives 50ms after card
-5. **Secondary**: Content fades in 100ms after card lands
-6. **Staging**: Other cards dim to 80%
+**Desa Seblak default: Playful.** A milestone or Retro TV opening may switch to Premium for that episode only. Define three constants per episode and keep them: signature easing (one curve for 80% of moves), duration palette (quick / standard / slow), entrance pattern (one consistent entry style).
 
-### Success State (Playful)
-1. **Primary**: Scale pop with ease-out-back
-2. **Secondary**: Checkmark draws in
-3. **Ambient**: Subtle particle burst
-4. **Color**: Green fill
-5. **Total**: 300-400ms
+## Disney's 12 principles — condensed for video
 
-### Error Shake (Corporate)
-1. **Primary**: Position oscillates 2-3 times, ±10-15px horizontal
-2. **Easing**: ease-in-out for sharp stops
-3. **Color**: Red tint
-4. **Total**: 300-400ms
-5. **No overshoot**: Errors feel firm
+Full version: `references/upstream/director/disney-principles.md`. The six that matter most for stickman:
 
-> More patterns: [patterns/entrance-exit.md](patterns/entrance-exit.md) | [patterns/state-feedback.md](patterns/state-feedback.md)
+1. **Squash and stretch** — squash scale ~[1.2, 0.8], stretch ~[0.85, 1.15]; impact 2–4 f, recovery 4–8 f. Preserve volume. Skip for Premium episodes.
+2. **Anticipation** — small motion opposite to the main direction first, 10–20% of the main action. For characters use the tighter 2–3 f measured rule; for objects and text use 3–6 f.
+3. **Staging** — dim non-hero elements to 40–60% opacity; hero enters 100–200 ms (3–6 f) after supporting elements; one primary action per beat.
+4. **Follow through / overlapping action** — child parts trail the parent by 50–150 ms (2–5 f); trailing elements stop 100–200 ms (3–6 f) after the parent. Lower spring stiffness = more trailing.
+5. **Slow in and slow out** — see the directional rules above. Never linear for spatial movement.
+6. **Arcs** — add a 10–20 px perpendicular offset at a path midpoint (5 px for Corporate, 20 px+ for Playful). Straight paths read as mechanical — use them only on purpose.
+7. **Secondary action** — amplitude 30–50% of primary, 50–100 ms (2–3 f) after primary, different easing. Example: character lands, then hair/cloth settles, then shadow grows.
+8. **Timing** — heavy = 400–800 ms (12–24 f), light = 100–250 ms (3–8 f), sad/serious = 600 ms+ (18 f+), happy/light = 200–400 ms (6–12 f), urgent = 100–200 ms (3–6 f).
+9. **Exaggeration** — Playful 15–25%, Energetic 20–30%, Corporate 0–5%, Premium 0%. Scale overshoot 10–30% beyond target, rotation ±5–15°.
+10. **Appeal** — smooth curves over sharp angles, consistent personality. Appeal killers: jerky motion, inconsistent timing, abrupt stops, uniform animation (everything moving the same way at the same time).
 
----
+## Common recipes (translated from UI)
 
-## Choreography Essentials
+| Recipe | Principles | Video form |
+|---|---|---|
+| Button press | Anticipation + squash + follow-through + secondary + timing | Character poke / tap: anticipate 2 f, squash 3 f, overshoot settle 6 f, shadow shrinks |
+| Card entrance | Anticipation + arcs + slow in/out + follow-through + staging | Character/text entrance: rise from 20 px below on a slight arc, ease-out, shadow arrives 2 f late |
+| Success celebration | Exaggeration + secondary + timing + squash + appeal | Punchline win: scale pop with ease-out-back, confetti/secondary burst, 9–12 f total |
+| Error shake | Timing + slow in/out + staging, no exaggeration | Wrong-answer beat: position oscillates 2–3 times, ±10–15 px, 9–12 f |
+| Loading / waiting | Timing + slow in/out + appeal | Waiting beat: slow ambient loop, sine easing, nothing pops |
 
-**Coordinated entry**:
-- Lead with the hero — primary element enters first or most prominently
-- Spatial consistency — all elements enter from same direction
-- Counter-motion — hero moves right → ambient moves left at 20-30% speed
+## Three motion layers
 
-**1/3 Rule (distance)**: No motion travels more than 1/3 of screen without a keyframe change.
+Every beat needs all three or it reads flat: **primary** (the action the viewer follows), **secondary** (shadow, hair, cloth, icon shift), **ambient** (background drift, breathing, light). Check the render stills for missing layers before calling a scene done.
 
-**1/3 Rule (elements)**: With 3+ elements, no more than 1/3 in active motion simultaneously.
+## Quality checklist (before delivery)
 
-**Stagger budgets**:
+From `references/upstream/reference/quality-checklist.md` — the short version:
 
-| Pattern | Delay | Total Budget | Use Case |
-|---------|-------|-------------|----------|
-| Micro cascade | 20-40ms | <200ms | List items, grid cells |
-| Standard | 50-100ms | <400ms | Cards, panels, nav |
-| Dramatic | 100-200ms | <600ms | Hero sections |
-| Wave | 30-60ms | <500ms | Data visualizations |
+- Every move has an emotional target and a personality that matches the episode.
+- No linear spatial movement; no move without easing.
+- Entrances longer than exits; stagger total under 15 f.
+- One hero per beat; secondary layers present; frozen frame ≥ 12 f is a defect (same bar as the stickman workflow).
+- Overshoot inside budget; no exaggeration in Premium/Corporate episodes.
+- If a move feels wrong, check in this order: duration, easing, then staging — in that order, not all at once.
 
-**Critical**: Total stagger must stay under 500ms.
+## References — upstream files
 
-> Deep dive: [director/choreography.md](director/choreography.md)
+All under `references/upstream/` (verbatim LottieFiles, MIT):
 
----
+- `SKILL.md` — the full skill: 8-step checklist, three pillars, personality, property selection, duration/easing tables, patterns.
+- `director/` — `core-philosophy.md`, `decision-framework.md`, `disney-principles.md`, `motion-personality.md`, `emotion-mapping.md`, `choreography.md`, `narrative-structure.md`, `context-adaptation.md`.
+- `patterns/` — `entrance-exit.md`, `state-feedback.md`, `ambient-continuous.md`, `multi-element.md`.
+- `reference/` — `timing-easing-tables.md`, `property-selection.md`, `quality-checklist.md`, `troubleshooting.md`.
 
-## Emotion-to-Motion Map
+## Limits — honest
 
-| Emotion | Character | Path | Easing | Duration |
-|---------|-----------|------|--------|----------|
-| Joy | Bouncy, arcs | Curved, upward | ease-out-back | 200-400ms |
-| Calm | Smooth, flowing | Gentle curves | sine ease-in-out | 500-1000ms |
-| Urgency | Sharp, fast | Straight lines | ease-out | 100-200ms |
-| Sadness | Slow, downward | Drooping curves | cubic ease-in-out | 600-1200ms |
-| Surprise | Sudden, expanding | Radial outward | ease-out-expo | 150-300ms |
-| Elegance | Slow, controlled | Long arcs | (0.4,0,0.2,1) | 400-700ms |
-| Playfulness | Bouncy, irregular | Arcs, squiggly | ease-out-back | 200-350ms |
+- **Upstream is UI-first.** Every example is a button, card or modal. The translation to video beats in this file is ours, not theirs — the frame conversions assume 30 fps and the personality default (Playful) is our choice for the series, not a LottieFiles recommendation.
+- **Small, quiet repo.** 4 commits since creation in March 2026, no releases, no changelog activity since. That is fine for a finished principles document (it does not need maintenance the way code does), but do not expect updates.
+- **Principles, not a renderer.** This skill tells you what timing and easing to use; it writes no Remotion or Blender code itself. Pair it with the video-studio skill and the claude-animated-shorts rules.
+- **Durations are starting points.** The tables are heuristics from UI practice, not measured video data. If a beat reads wrong at the table value, trust the render stills over the table.
 
-**Path as language**: Angular = tense. Curved = friendly. Spiral = whimsical. Diagonal = purposeful. Vertical = growth/weight. Horizontal = progress.
+## Smoke test, verified 2026-11-17
 
-> Deep dive: [director/emotion-mapping.md](director/emotion-mapping.md)
-
----
-
-## Weight Classification
-
-| Weight | Examples | Duration | Overshoot | Easing |
-|--------|----------|----------|-----------|--------|
-| Heavy | Modals, overlays | 300-500ms | 0% | Gentle, high damping |
-| Medium | Cards, panels | 200-350ms | 3-5% | Moderate |
-| Light | Tooltips, badges, icons | 80-200ms | 5-15% | Responsive |
-
----
-
-## Quality Rules
-
-### CRITICAL — never break
-1. **Never linear for spatial movement** — always use easing curves (linear only for spinners, progress bars)
-2. **Never opacity-only** for important state changes — combine with position or scale
-3. **Never exceed 1/3 screen** without intermediate keyframe
-4. **Always three motion layers** — primary + secondary + ambient
-
-### HIGH — strongly follow
-1. Match duration to element type (see tables)
-2. Use directional easing (ease-out entrance, ease-in exit)
-3. Apply Disney principles (especially anticipation, follow-through)
-4. Maintain consistent personality across scene
-
-> Full checklist: [reference/quality-checklist.md](reference/quality-checklist.md)
-
----
-
-## Troubleshooting Quick Reference
-
-| Problem | Likely Cause | Fix |
-|---------|-------------|-----|
-| Looks robotic | Linear easing or no arcs | Add easing curves + arc paths |
-| Feels too slow | Duration too long for element type | Check duration table, use ease-out |
-| Feels cheap/flat | Missing secondary + ambient | Add shadow motion + background life |
-| Too distracting | Too many elements moving | Apply 1/3 rule, reduce amplitude |
-| No personality | Generic easing everywhere | Apply personality archetype consistently |
-
-> Deep dive: [reference/troubleshooting.md](reference/troubleshooting.md)
-
----
-
-## File Reference
-
-**Philosophy** (director/):
-- [core-philosophy.md](director/core-philosophy.md) — Three Pillars deep dive
-- [decision-framework.md](director/decision-framework.md) — Full decision pipeline
-- [disney-principles.md](director/disney-principles.md) — 12 principles, UI-adapted
-- [motion-personality.md](director/motion-personality.md) — 4 archetypes + brand identity
-- [emotion-mapping.md](director/emotion-mapping.md) — Emotion → motion + color psychology
-- [choreography.md](director/choreography.md) — Multi-element coordination
-- [narrative-structure.md](director/narrative-structure.md) — Micro-story framework
-- [context-adaptation.md](director/context-adaptation.md) — Platform, a11y, performance
-
-**Reference** (reference/):
-- [timing-easing-tables.md](reference/timing-easing-tables.md) — Duration + easing lookups
-- [property-selection.md](reference/property-selection.md) — Property communication guide
-- [troubleshooting.md](reference/troubleshooting.md) — Animation smells + fixes
-- [quality-checklist.md](reference/quality-checklist.md) — Evaluation criteria
-
-**Patterns** (patterns/):
-- [entrance-exit.md](patterns/entrance-exit.md) — Entrance/exit recipes
-- [state-feedback.md](patterns/state-feedback.md) — Success, error, loading, hover
-- [ambient-continuous.md](patterns/ambient-continuous.md) — Looping, breathing, parallax
-- [multi-element.md](patterns/multi-element.md) — Stagger + choreography recipes
+- Frontmatter parses (name, description, license) and the description contains no unquoted colon.
+- Upstream tree verified byte-identical to the repo tarball at commit `f9a8a041` (SHA-256 of `SKILL.md` matches above).
+- Frame-conversion proof: the duration table converts cleanly to 30 fps frames (e.g. card enter 200–350 ms = 6–11 f, dramatic reveal 600–1200 ms = 18–36 f) and the spring table maps to valid Remotion `spring()` configs (standard 300/20, bouncy 200/12, gentle 120/22). See the tables above.
